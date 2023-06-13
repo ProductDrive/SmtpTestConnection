@@ -8,9 +8,8 @@ namespace SmtpTestConnection.Web.Controllers
         {
             return View();
         }
-
-       
-        public ActionResult About()
+               
+        public ActionResult Documentation()
         {
             return View();
         }
