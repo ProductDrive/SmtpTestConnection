@@ -20,17 +20,12 @@ namespace SmtpTestConnection.Web.Startup
                         )
                 ).AddItem(
                     new MenuItemDefinition(
-                        PageNames.Connect,
-                        L("Connect"),
-                        url: "/Connection",
-                        icon: "fa fa-plug"
+                        PageNames.Documentation,
+                        L("Documentation"),
+                        url: "/Home/Documentation",
+                        icon: "fa fa-book"
                         )
-                ).AddItem(new MenuItemDefinition(
-                        PageNames.About,
-                        L("About"),
-                        url: "Home/About",
-                        icon: "fa fa-info"
-                        )
+                
                 );
         }
 
