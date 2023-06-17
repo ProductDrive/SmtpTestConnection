@@ -6,6 +6,12 @@
     "HomePage": "Ana sayfa",
     "About": "Hakkında",
     "Home_Description": "SmtpTestConnection projesine hoşgeldiniz...",
-    "About_Description": "Bu proje, ASP.NET Core ile ABP framework kullanmak için basit bir başlangıç şablonudur."
+    "About_Description": "Bize ulaşın: admin@projectdriveng.com.ng",
+    "Documentation": "Belgeler",
+    "Connect": "Bağlantı",
+    "Connect_Description": "Hoş geldin! Bağlantınızı test edin",
+    "Home_Title": ".NET Email Sender - Genel Bakış",
+    "App_version": "2.1.2",
+    "Other_versions": "2.0.1 | 1.1.0 | 1.0.0"
   }
 }
