@@ -32,7 +32,14 @@ namespace SmtpTestConnection.Web.Startup
                         url: "/Home/Documentation",
                         icon: "fa fa-book"
                         )
-                );
+                ).AddItem(
+                    new MenuItemDefinition(
+                        PageNames.Template,
+                        L("TemplateGal"),
+                        url: "/Template",
+                        icon: "fa fa-list"
+                        )
+                    );
         }
 
         private static ILocalizableString L(string name)

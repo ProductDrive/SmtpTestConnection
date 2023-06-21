@@ -1,0 +1,54 @@
+﻿@model SmtpTestConnection.Web.ViewModel.FileUploadModel
+
+@{
+    ViewData["Title"] = "UploadTemplate";
+}
+
+@if (string.IsNullOrWhiteSpace(Model.ApiKey))
+{
+<div class="row">
+    <form asp-action="GenerateTemplateAPIKey">
+        <div class="alert alert-success" role="alert">
+            You need an API Key to be able to upload custom templates
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Get Key" class="btn btn-default" />
+        </div>
+
+    </form>
+</div>
+}
+<hr />
+@if (!string.IsNullOrWhiteSpace(Model.ApiKey))
+{
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="UploadTemplate" enctype="multipart/form-data">
+                <div class="form-group">
+                    <span class="text-info">Keep this key in a safe place as you may not be able to retrieve it from here agian</span>
+                    <label type="text" class="form-control">@Model.ApiKey</label>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ApiKey" class="control-label"></label>
+                    <input asp-for="ApiKey" class="form-control" type="password" />
+                    <span asp-validation-for="ApiKey" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TemplateName" class="control-label"></label>
+                    <input asp-for="TemplateName" class="form-control" />
+                    <span asp-validation-for="TemplateName" class="text-danger"></span>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input asp-for="Htmlfile" class="form-control-file" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Upload" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,68 @@
+﻿@using SmtpTestConnection.Web.Startup
+@model ResponseModel
+@{
+    ViewBag.ActiveMenu = PageNames.Template;
+}
+
+@section scripts
+{
+    <environment names="Development">
+        <script src="~/js/views/home/index.js"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="~/js/views/home/index.min.js"></script>
+    </environment>
+}
+
+@*@if (Model.Errors?.Any() ?? false)
+{
+    <div class="row">
+
+        <div class="form-group">
+            <span class="text-danger">Keep this key in a safe place as you may not be able to retrieve it from here agian</span>
+            <input type="text" value="@Model.Errors.First()" class="form-control" />
+        </div>
+    </div>
+}*@
+
+@if (string.IsNullOrWhiteSpace(Model.Response))
+{
+<div class="row">
+
+    <form asp-action="CustomeTemplate">
+        <div class="form-group">
+            <input asp-for="Response" type="text" class="form-control" placeholder="Enter API key" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+
+    </form>
+    <form asp-action="GenerateTemplateAPIKey">
+        
+        <div class="form-group">
+            <input type="submit" value="Get Key" class="btn btn-default" />
+        </div>
+
+    </form>
+</div>
+}
+
+
+@if (!string.IsNullOrWhiteSpace(Model.Response))
+{
+    @foreach (var tem in Model.Templates)
+    {
+        <div class="row">
+                <div class="bg-white rounded shadow-sm">
+                    <div class="box">
+                        <iframe srcdoc="@tem.Value" src="" allowfullscreen="true" width="800" height="300" scrolling="yes"></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h5> <a href="#" class="text-dark">@tem.Key</a> <span class="badge text-danger px-3 rounded-pill font-weight-normal">New</span> </h5>
+                    </div>
+                </div>
+        </div>
+     }
+}
