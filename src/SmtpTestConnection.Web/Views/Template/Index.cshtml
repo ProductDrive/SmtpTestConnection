@@ -16,20 +16,24 @@
     </environment>
 }
 
+<h2>Template Previews</h2>
 
-<div class="text-left"><a href="/template/custometemplate">Fetch your templates</a></div>
+<div class="row">
+    <div class="text-left"><a href="/template/custometemplate">Fetch your templates</a></div>
+</div>
     @foreach (var tem in Model.Templates)
     {
         <div class="row">
             <div class="bg-white rounded shadow-sm">
                 <div class="box">
-                    <iframe srcdoc="@tem.Value" src="" allowfullscreen="true" width="800" height="300" scrolling="yes"></iframe>
+                    <iframe srcdoc="@tem.Value" src="" allowfullscreen="true" style="border:none; width:800px; height:1000px" scrolling="yes"></iframe>
                 </div>
                 <div class="p-4">
-                    <h5> <a href="#" class="text-dark">@tem.Key</a> <span class="badge text-danger px-3 rounded-pill font-weight-normal">New</span> </h5>
+                    <h5> <span>&nbsp;</span> <a href="#" class="text-dark">@tem.Key</a> <span class="badge text-danger px-3 rounded-pill font-weight-normal">New</span> </h5>
                 </div>
             </div>
         </div>
+        <div class="row"> <hr /></div>
     }
 
 

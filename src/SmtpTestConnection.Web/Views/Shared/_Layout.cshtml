@@ -135,11 +135,43 @@
         }
     </script>
 
+    <script>
+        function enableCopy(selector = "blockquote", childSelector = "code", btnText = "copy to clipboard", btnTextSuccess = "Copied", activeClass = "--copy") {
+            document.querySelectorAll(`${selector}:not(.${activeClass})`).forEach(node => {
+                console.log(node);
+                console.log(selector);
+                // create a "copy" button
+                let copyBtn = document.createElement("button");
+                copyBtn.innerText = btnText;
+                // activeClass acts as flag so we don't add another copy button by  mistake
+                copyBtn.classList.add(activeClass);
+                copyBtn.classList.add("btn");
+                copyBtn.classList.add("btn-default");
+                copyBtn.classList.add("btn-xs");
+                node.appendChild(copyBtn);
+                console.log(btnText);
+                copyBtn.addEventListener("click", async () => {
+                    // copy to clipboard
+                    if (navigator.clipboard) {
+                        let text = node.querySelector(childSelector).innerText;
+                        await navigator.clipboard.writeText(text);
+                    }
+                    // change text of button after copying
+                    copyBtn.innerText = btnTextSuccess;
+                    // change text back to normal after ### ms
+                    setTimeout(() => icon.innerText = btnText, 2000);
+                })
+            })
+        }
+
+        enableCopy();
+    </script>
+
     <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
     <script src="~/AbpServiceProxies/GetAll?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
     <script src="~/AbpScripts/GetScripts?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
 
-   
+
     <!-- View specific scripts -->
 
     @RenderSection("scripts", required: false)

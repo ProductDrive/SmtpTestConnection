@@ -10,10 +10,8 @@ namespace SmtpTestConnection.Web.ViewModel
     public class FileUploadModel
     {
         public IFormFile Htmlfile { get; set; }
-        [Required]
         [Display( Name = "Enter API Key")]
         public string ApiKey { get; set; }
-        [Required]
         [Display(Name = "Name Your Template")]
         public string TemplateName { get; set; }
     }

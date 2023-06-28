@@ -13,6 +13,7 @@ namespace SmtpTestConnection.Web.ViewModel
         public object ReturnObj { get; set; }
         public Dictionary<string, string> Templates => ReturnObj == null? null: JsonConvert.DeserializeObject<Dictionary<string, string>>(ReturnObj.ToString());
         public List<string> Errors { get; set; }
+        public string RequestApi { get; set; }
 
     }
 

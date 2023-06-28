@@ -2,6 +2,7 @@
 @model ResponseModel
 @{
     ViewBag.ActiveMenu = PageNames.Template;
+    Model.RequestApi = Model.Templates != null ? "" : "Enter API Key";
 }
 
 @section scripts
@@ -14,55 +15,58 @@
         <script src="~/js/views/home/index.min.js"></script>
     </environment>
 }
+<div class="row visible-sm-block"><br /> <br /><h2>Custom Templates</h2></div>
+<h2 class="visible-md visible-lg">Custom Templates</h2>
 
-@*@if (Model.Errors?.Any() ?? false)
+@if (!string.IsNullOrWhiteSpace(Model.RequestApi))
 {
     <div class="row">
 
-        <div class="form-group">
-            <span class="text-danger">Keep this key in a safe place as you may not be able to retrieve it from here agian</span>
-            <input type="text" value="@Model.Errors.First()" class="form-control" />
-        </div>
+        <form asp-action="CustomeTemplate">
+            @if (!string.IsNullOrWhiteSpace(Model.RequestApi) && Model.Errors == null)
+            {
+                <div class="form-group">
+                    <input asp-for="RequestApi" type="text" class="form-control" placeholder="Enter API key" />
+                </div>
+            }
+            @if (Model.Errors?.Any() ?? false)
+            {
+                <div class="form-group">
+                    <input asp-for="RequestApi" type="text" class="form-control" style="color:red" value="@Model.Errors.First()" />
+                </div>
+            }
+            <div>
+                <input type="submit" value="Submit" class="btn btn-primary" />
+                <a class="btn btn-default" asp-action="GenerateTemplateAPIKey">Get Key</a>
+            </div>
+
+        </form>
     </div>
-}*@
-
-@if (string.IsNullOrWhiteSpace(Model.Response))
-{
-<div class="row">
-
-    <form asp-action="CustomeTemplate">
-        <div class="form-group">
-            <input asp-for="Response" type="text" class="form-control" placeholder="Enter API key" />
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Submit" class="btn btn-primary" />
-        </div>
-
-    </form>
-    <form asp-action="GenerateTemplateAPIKey">
-        
-        <div class="form-group">
-            <input type="submit" value="Get Key" class="btn btn-default" />
-        </div>
-
-    </form>
-</div>
 }
 
 
 @if (!string.IsNullOrWhiteSpace(Model.Response))
 {
-    @foreach (var tem in Model.Templates)
+    @if (Model.Templates == null)
     {
-        <div class="row">
+        <div class="alert alert-danger" role="alert">
+            @Model.Response;
+        </div>
+    }
+    @if (Model.Templates != null)
+    {
+        @foreach (var tem in Model.Templates)
+        {
+            <div class="row">
                 <div class="bg-white rounded shadow-sm">
                     <div class="box">
-                        <iframe srcdoc="@tem.Value" src="" allowfullscreen="true" width="800" height="300" scrolling="yes"></iframe>
+                        <iframe srcdoc="@tem.Value" src="" allowfullscreen="true" width="800" height="300" scrolling="yes" style="border:none"></iframe>
                     </div>
                     <div class="p-4">
-                        <h5> <a href="#" class="text-dark">@tem.Key</a> <span class="badge text-danger px-3 rounded-pill font-weight-normal">New</span> </h5>
+                        <h5> <a href="#" class="text-dark">@tem.Key.Substring(19, (tem.Key.Length - 19))</a> <span class="badge text-danger px-3 rounded-pill font-weight-normal">New</span> </h5>
                     </div>
                 </div>
-        </div>
-     }
+            </div>
+        }
+    }
 }

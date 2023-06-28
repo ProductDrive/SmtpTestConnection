@@ -114,7 +114,7 @@
                 After you have retrieved your email sender settings you can then proceed to send your emails. <br />
             </p>
             <pre class="prettyprint lang-cs">
-                <code>
+            <code>
                     var res = await SendMail.AuthenticateSenderDomain("sender@domain.domain", "your_password_here");
                     var msgModel = new MessageModel
                     {
@@ -132,7 +132,7 @@
                 After you have retrieved your email sender settings you can then proceed to send your emails. <br />
             </p>
             <pre class="prettyprint lang-cs">
-                <code class="language-c#">
+            <code class="language-c#">
                     var res = await SendMail.AuthenticateSenderDomain("sender@domain.domain", "your_password_here");
                     //The recievers can see all other recievers in the email header. Use blind copies to prevent this.
                     var msgModel = new MessageModel
@@ -153,7 +153,7 @@
                 This feature allows you to fire many emails(e.g Welcome emails with other instruction emails) to a single reciever with a single method call. <br />
             </p>
             <pre class="prettyprint lang-cs">
-                <code>
+            <code>
                     //Note that two different messages but the same reciever (newuser@domain.com)
                     var message1 = new MessageModel
                     {
@@ -188,7 +188,7 @@
                 This feature allows you to fire many emails(e.g Birthday messages probably with similar content) to unique recievers with a single method call. <br />
             </p>
             <pre class="prettyprint lang-cs">
-                <code>
+            <code>
                     //Note that two different messages also two different recievers
                     var message1 = new MessageModel
                     {
@@ -224,7 +224,7 @@
                 You can simply copy or blind copy a particular email message. You will add the emaill address to be copied to cc and the email address for blind copy will into the bcc properties respectively<br />
             </p>
             <pre class="prettyprint lang-cs">
-                <code>
+            <code>
                     var res = await SendMail.AuthenticateSenderDomain("sender@domain.domain", "your_password_here");
                     //The reciever can see Ccs in the email header but can not see the Bccs in the header.
                     var msgModel = new MessageModel
@@ -248,9 +248,15 @@
             <h2>Using Templates</h2>
 
             <p>
-                Details coming soon
+                Email Templates are a great way to delight email receivers generally. We provide general templates where developers can choose from and make use in their application.
             </p>
-            
+            <p>
+                Developers can also upload templates they wish to use and even give it any name as they wish. <a href="/template/uploadtemplate">Upload custom template.</a> These templates are immediately available for use in their application using the method call as below [available from version: <code>2.2.0</code> ] <br />
+                                                                                                                                                                                <pre class="prettyprint lang-cs">
+                     <code>string htmlTemplateBody = await SendMail.GetTemplateAsStringAsync("Your_APIKey", "template_name");</code>
+                 </pre>
+            </p>
+
             <div class="doublespace"></div>
             <div class="divider" style="width:24%; margin:30px 0;"></div>
 
